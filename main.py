@@ -178,6 +178,8 @@ else:
 comp = st.text_input(
     "Quelle compétence voulez-vous analyser?"
 )
+if comp == "":
+    comp = "Toutes"
 
 schoolID = st.text_input("Entrez le code de l'école")
 
