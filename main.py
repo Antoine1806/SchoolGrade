@@ -146,7 +146,7 @@ def requete(data:dict, schoolID:str, niveau:List[str], matiere:str, comp:str) ->
 
 
 # Load the updated Excel file
-file = st.file_uploader("Importer un tableau .xlsx", type=["xlsx","xls"])
+file = st.file_uploader("Importer un tableau .xlsx", type=["xlsx"])
 if file:
     data = pd.read_excel(file, sheet_name=None)
 
