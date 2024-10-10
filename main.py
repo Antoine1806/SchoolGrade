@@ -34,7 +34,12 @@ def clean_data(data:dict[str, pd.DataFrame]) -> dict:
     for sheet in data:
         if sheet == 'Aide à la lecture':
             continue
-        res[sheet] = clean_df_data(data[sheet])
+        elif sheet == 'CPM':
+            res['CPMA'] = clean_df_data(data[sheet])
+        elif sheet == 'CPF':
+            res['CPFR'] = clean_df_data(data[sheet])
+        else:
+            res[sheet] = clean_df_data(data[sheet])
     return res
 
 def filter_level(data:dict[pd.DataFrame], niveaux:List[str]) -> dict:
