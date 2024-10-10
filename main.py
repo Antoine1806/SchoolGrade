@@ -32,6 +32,8 @@ def clean_df_data(df: pd.DataFrame) -> pd.DataFrame:
 def clean_data(data:dict[str, pd.DataFrame]) -> dict:
     res = {}
     for sheet in data:
+        if sheet == 'Aide à la lecture':
+            continue
         res[sheet] = clean_df_data(data[sheet])
     return res
 
@@ -144,7 +146,7 @@ def requete(data:dict, schoolID:str, niveau:List[str], matiere:str, comp:str) ->
 
 
 # Load the updated Excel file
-file = st.file_uploader("Importer un tableau .xlsx", type=["xlsx"])
+file = st.file_uploader("Importer un tableau .xlsx", type=["xlsx","xls"])
 if file:
     data = pd.read_excel(file, sheet_name=None)
 
