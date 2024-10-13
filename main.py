@@ -77,6 +77,8 @@ def filter_subject(data:dict[pd.DataFrame], matiere:str) -> dict:
 def filter_school(data:dict[pd.DataFrame], ecole:str) -> dict:
     res = {}
     secteurs = {}
+    if ecole == "Toutes":
+        return data
     if ecole in secteurs:
         for sheet in data:
             res[sheet] = pd.concat([data[sheet][data[sheet].iloc[:, 0] == school] for school in secteurs[ecole]])
@@ -138,6 +140,9 @@ def calc_avg(data:dict) -> tuple[float, float]:
     return avg_ma, avg_fr
 
 def requete(data:dict, schoolID:str, niveau:List[str], matiere:str, comp:str) -> tuple[float]:
+    if comp != "Toutes" and matiere == "Toutes":
+        st.write("Veuillez choisir une matière")
+        return 0, 0
 
     data = clean_data(data)
     data = filter_level(data, niveau)
@@ -181,7 +186,10 @@ comp = st.text_input(
 if comp == "":
     comp = "Toutes"
 
+schoolID = ""
 schoolID = st.text_input("Entrez le code de l'école")
+if schoolID == "":
+    schoolID = "Toutes"
 
 if st.button("Valider"):
     data, avg_ma, avg_fr = requete(data, schoolID, level, subject, comp)
