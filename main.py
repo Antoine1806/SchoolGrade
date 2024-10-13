@@ -187,9 +187,10 @@ if st.button("Valider"):
     data, avg_ma, avg_fr = requete(data, schoolID, level, subject, comp)
 
     if subject == "MA":
-        st.write(f"La moyenne de la compétence {comp} pour l'école {schoolID} est de {avg_ma} en MA")
+        st.metric("Moyenne Math", avg_ma)
     elif subject == "FR":
-        st.write(f"La moyenne de la compétence {comp} pour l'école {schoolID} est de {avg_fr} en FR")
+        st.metric("Moyenne Français", avg_fr)
     else:
-        st.write(f"La moyenne de la compétence {comp} pour l'école {schoolID} est de {avg_ma} en MA et {avg_fr} en FR")
+        st.metric("Moyenne Math", avg_ma)
+        st.metric("Moyenne Français", avg_fr)
 
