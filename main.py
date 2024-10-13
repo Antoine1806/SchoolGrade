@@ -186,5 +186,10 @@ schoolID = st.text_input("Entrez le code de l'école")
 if st.button("Valider"):
     data, avg_ma, avg_fr = requete(data, schoolID, level, subject, comp)
 
-    st.write(f"La moyenne de la compétence {comp} pour l'école {schoolID} est de {avg_ma} en MA et {avg_fr} en FR")
+    if subject == "MA":
+        st.write(f"La moyenne de la compétence {comp} pour l'école {schoolID} est de {avg_ma} en MA")
+    elif subject == "FR":
+        st.write(f"La moyenne de la compétence {comp} pour l'école {schoolID} est de {avg_fr} en FR")
+    else:
+        st.write(f"La moyenne de la compétence {comp} pour l'école {schoolID} est de {avg_ma} en MA et {avg_fr} en FR")
 
